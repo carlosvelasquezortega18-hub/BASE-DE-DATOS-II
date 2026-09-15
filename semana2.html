@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,149 +8,205 @@
     <title>Semana 2 - Base de Datos II</title>
 
     <style>
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #0f172a;
-            color: #e2e8f0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
         }
 
         header {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 38px;
+            font-size: 40px;
+            margin: 0 0 10px;
         }
 
         header p {
-            margin-top: 10px;
             font-size: 18px;
         }
 
         .contenedor {
-            width: 90%;
             max-width: 1100px;
-            margin: 30px auto;
+            margin: auto;
+            padding: 40px 20px;
         }
 
         .actividad {
-            background-color: #1e293b;
-            border-radius: 15px;
+            background: #1e293b;
             padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            border-radius: 15px;
+            border: 1px solid #334155;
         }
 
         .actividad h2 {
             color: #60a5fa;
-            margin-top: 0;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 10px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin-bottom: 25px;
         }
 
         .actividad p {
+            color: #cbd5e1;
             line-height: 1.7;
-            font-size: 16px;
         }
 
+        /* MANUAL */
+
         .manual {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
             text-align: center;
             margin-top: 25px;
         }
 
+        .manual h3 {
+            color: #93c5fd;
+        }
+
+        .manual p {
+            color: #cbd5e1;
+        }
+
         .boton-manual {
             display: inline-block;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-            text-decoration: none;
-            padding: 14px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .boton-manual:hover {
-            background: linear-gradient(135deg, #1d4ed8, #2563eb);
-            transform: scale(1.05);
-        }
-
-        .aprendizaje {
-            background-color: #172554;
-            border-left: 5px solid #3b82f6;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .aprendizaje h3 {
-            color: #93c5fd;
-            margin-top: 0;
-        }
-
-        .boton {
-            display: block;
-            width: fit-content;
-            margin: 30px auto;
-            background-color: #2563eb;
+            margin-top: 15px;
+            background: #2563eb;
             color: white;
             text-decoration: none;
             padding: 12px 25px;
             border-radius: 8px;
             font-weight: bold;
-            transition: 0.3s;
+        }
+
+        .boton-manual:hover {
+            background: #1d4ed8;
+        }
+
+        /* INFOGRAFIAS */
+
+        .infografias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .infografia {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .infografia h3 {
+            color: #93c5fd;
+            margin-bottom: 15px;
+        }
+
+        .infografia img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* APRENDIZAJE */
+
+        .aprendizaje {
+            background: #1d4ed8;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .aprendizaje h2 {
+            color: white;
+        }
+
+        .aprendizaje p {
+            line-height: 1.7;
+        }
+
+        /* BOTON */
+
+        .boton {
+            display: inline-block;
+            margin-top: 30px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
         }
 
         .boton:hover {
-            background-color: #1d4ed8;
-            transform: scale(1.05);
+            background: #1d4ed8;
         }
 
         footer {
-            background-color: #020617;
+            background: #020617;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 25px;
             color: #94a3b8;
         }
+
     </style>
 </head>
+
 
 <body>
 
     <!-- ENCABEZADO -->
+
     <header>
+
         <h1>SEMANA 2</h1>
-        <p>Base de Datos II</p>
+
+        <p>
+            Base de Datos II
+        </p>
+
     </header>
 
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="contenedor">
+    <!-- CONTENEDOR PRINCIPAL -->
 
+    <div class="contenedor">
+
+
+        <!-- ============================= -->
         <!-- ACTIVIDAD 1 -->
+        <!-- ============================= -->
+
         <section class="actividad">
 
             <h2>📘 ACTIVIDAD 1</h2>
 
             <p>
-                En esta actividad se realizó la instalación y configuración
-                de Microsoft SQL Server 2022, siguiendo los pasos necesarios
-                para preparar el entorno de trabajo de Base de Datos II.
-            </p>
-
-            <p>
-                Se elaboró un manual de instalación donde se detallan los
-                requisitos previos, la instalación del Database Engine,
-                la configuración de la instancia, la instalación de SQL Server
-                Management Studio (SSMS) y la realización de una primera conexión.
+                Instalación y configuración de Microsoft SQL Server 2022.
             </p>
 
             <div class="manual">
+
+                <h3>📚 Manual de Instalación de SQL Server 2022</h3>
+
+                <p>
+                    En el siguiente manual se presentan los pasos necesarios
+                    para realizar la instalación y configuración de Microsoft
+                    SQL Server 2022.
+                </p>
+
                 <a
                     href="Documentos/Manual_Instalacion_SQL_Server_2022.docx"
                     target="_blank"
@@ -157,67 +214,255 @@
                 >
                     📘 Ver manual de instalación
                 </a>
+
             </div>
 
         </section>
 
 
+        <!-- ============================= -->
         <!-- ACTIVIDAD 2 -->
+        <!-- ============================= -->
+
         <section class="actividad">
 
             <h2>📚 ACTIVIDAD 2</h2>
 
             <p>
-                En esta actividad se trabajaron los contenidos correspondientes
-                a la segunda parte de la Semana 2, relacionados con el estudio
-                y manejo de los sistemas de bases de datos.
+                Infografías correspondientes a los temas desarrollados
+                durante la Semana 2 de Base de Datos II.
             </p>
 
-            <p>
-                Se reforzaron los conocimientos adquiridos durante la instalación
-                de Microsoft SQL Server y se revisaron conceptos importantes para
-                continuar con el desarrollo de las actividades prácticas de
-                Base de Datos II.
-            </p>
 
-        </section>
+            <div class="infografias">
 
 
-        <!-- ¿QUÉ APRENDÍ? -->
-        <section class="actividad">
+                <!-- INFOGRAFÍA 1 -->
 
-            <div class="aprendizaje">
+                <div class="infografia">
 
-                <h3>📝 ¿Qué aprendí?</h3>
+                    <h3>Infografía 1</h3>
 
-                <p>
-                    Durante esta semana aprendí los pasos necesarios para instalar
-                    y configurar Microsoft SQL Server 2022, además de conocer la
-                    función del Database Engine y de SQL Server Management Studio
-                    (SSMS) para trabajar con bases de datos.
-                </p>
+                    <a
+                        href="Infografias/infografia1.png"
+                        target="_blank"
+                    >
 
-                <p>
-                    También reforcé la importancia de contar con un entorno
-                    correctamente configurado para poder crear, administrar y
-                    consultar bases de datos mediante instrucciones SQL.
-                </p>
+                        <img
+                            src="Infografias/infografia1.png"
+                            alt="Infografía 1"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 2 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 2</h3>
+
+                    <a
+                        href="Infografias/infografia2.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia2.png"
+                            alt="Infografía 2"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 3 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 3</h3>
+
+                    <a
+                        href="Infografias/infografia3.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia3.png"
+                            alt="Infografía 3"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 4 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 4</h3>
+
+                    <a
+                        href="Infografias/infografia4.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia4.png"
+                            alt="Infografía 4"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 5 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 5</h3>
+
+                    <a
+                        href="Infografias/infografia5.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia5.png"
+                            alt="Infografía 5"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 6 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 6</h3>
+
+                    <a
+                        href="Infografias/infografia6.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia6.png"
+                            alt="Infografía 6"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 7 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 7</h3>
+
+                    <a
+                        href="Infografias/infografia7.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia7.png"
+                            alt="Infografía 7"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- INFOGRAFÍA 8 -->
+
+                <div class="infografia">
+
+                    <h3>Infografía 8</h3>
+
+                    <a
+                        href="Infografias/infografia8.png"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="Infografias/infografia8.png"
+                            alt="Infografía 8"
+                        >
+
+                    </a>
+
+                </div>
+
 
             </div>
 
         </section>
 
 
+        <!-- ============================= -->
+        <!-- ¿QUÉ APRENDÍ? -->
+        <!-- ============================= -->
+
+        <section class="aprendizaje">
+
+            <h2>📝 ¿Qué aprendí?</h2>
+
+            <p>
+                Durante esta semana aprendí sobre la instalación y configuración
+                de Microsoft SQL Server 2022 y reforcé mis conocimientos sobre
+                la tecnología de bases de datos.
+            </p>
+
+            <p>
+                También comprendí la importancia de los sistemas gestores de
+                bases de datos y su utilización para almacenar, administrar
+                y consultar información.
+            </p>
+
+        </section>
+
+
+        <!-- ============================= -->
         <!-- BOTÓN REGRESAR -->
-        <a href="index.html" class="boton">
+        <!-- ============================= -->
+
+        <a
+            href="index.html"
+            class="boton"
+        >
             ⬅️ Regresar al inicio
         </a>
 
-    </main>
+
+    </div>
 
 
+    <!-- ============================= -->
     <!-- PIE DE PÁGINA -->
+    <!-- ============================= -->
+
     <footer>
-        © 2026 Carlos
+
+        © 2026 Carlos Velásquez Ortega | Base de Datos II
+
+    </footer>
+
+
+</body>
+
+</html>
+
+
 
 
