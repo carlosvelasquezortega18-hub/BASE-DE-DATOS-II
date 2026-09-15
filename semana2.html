@@ -1,12 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Semana 2 - Base de Datos II</title>
 
     <style>
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -55,19 +59,23 @@
             line-height: 1.7;
         }
 
+
+        /* ============================== */
         /* MANUAL */
+        /* ============================== */
 
         .manual {
             background: #0f172a;
             border: 1px solid #334155;
             border-radius: 12px;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             margin-top: 25px;
         }
 
         .manual h3 {
             color: #93c5fd;
+            font-size: 22px;
         }
 
         .manual p {
@@ -89,7 +97,10 @@
             background: #1d4ed8;
         }
 
+
+        /* ============================== */
         /* INFOGRAFIAS */
+        /* ============================== */
 
         .infografias {
             display: grid;
@@ -116,21 +127,13 @@
             max-height: 300px;
             object-fit: contain;
             border-radius: 8px;
+            cursor: pointer;
         }
 
-        .sin-imagen {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1e293b;
-            border: 2px dashed #475569;
-            border-radius: 8px;
-            color: #94a3b8;
-            padding: 10px;
-        }
 
+        /* ============================== */
         /* APRENDIZAJE */
+        /* ============================== */
 
         .aprendizaje {
             background: #1d4ed8;
@@ -147,7 +150,10 @@
             line-height: 1.7;
         }
 
-        /* BOTON */
+
+        /* ============================== */
+        /* BOTON VOLVER */
+        /* ============================== */
 
         .boton {
             display: inline-block;
@@ -164,12 +170,22 @@
             background: #1d4ed8;
         }
 
+
+        /* ============================== */
+        /* FOOTER */
+        /* ============================== */
+
         footer {
             background: #020617;
             text-align: center;
             padding: 25px;
             color: #94a3b8;
         }
+
+
+        /* ============================== */
+        /* RESPONSIVE */
+        /* ============================== */
 
         @media (max-width: 600px) {
 
@@ -180,18 +196,34 @@
             .contenedor {
                 padding: 25px 15px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+<!-- ================================= -->
+<!-- ENCABEZADO -->
+<!-- ================================= -->
+
 <header>
+
     <h1>SEMANA 2</h1>
-    <p>Instalación y configuración de MS-SQL Server</p>
+
+    <p>
+        Instalación y configuración de MS-SQL Server
+    </p>
+
 </header>
 
+
 <div class="contenedor">
+
 
     <!-- ================================= -->
     <!-- ACTIVIDAD 1 -->
@@ -205,33 +237,46 @@
             Manual de instalación de MS-SQL Server.
         </p>
 
+
         <div class="manual">
 
-            <h3>Manual de instalación de MS-SQL Server</h3>
+            <h3>
+                📘 Manual de instalación de MS-SQL Server
+            </h3>
+
 
             <p>
                 En esta actividad se presenta el manual correspondiente
-                al proceso de instalación de MS-SQL Server.
+                al proceso de instalación de MS-SQL Server 2022.
             </p>
+
 
             <p>
-                El manual permitirá revisar paso a paso el procedimiento
-                utilizado para instalar y configurar el sistema gestor
-                de bases de datos.
+                El manual explica paso a paso los requisitos previos,
+                la instalación, configuración del Database Engine,
+                instalación de SQL Server Management Studio (SSMS)
+                y la verificación del funcionamiento del servidor.
             </p>
 
-            <!--
-            CUANDO SUBAS EL MANUAL A GITHUB
-            PUEDES COLOCAR AQUÍ EL ENLACE.
-            -->
 
-            <a href="#" class="boton-manual">
+            <!-- ================================= -->
+            <!-- ENLACE AL MANUAL WORD -->
+            <!-- ================================= -->
+
+            <a
+                href="Documentos/Manual_Instalacion_SQL_Server_2022.docx"
+                target="_blank"
+                class="boton-manual"
+            >
+
                 📘 Ver manual de instalación
+
             </a>
 
         </div>
 
     </div>
+
 
 
     <!-- ================================= -->
@@ -242,139 +287,275 @@
 
         <h2>Actividad 2</h2>
 
+
         <p>
             En esta actividad se presentan ocho infografías
             relacionadas con los temas desarrollados durante
             la Semana 2.
         </p>
 
+
         <div class="infografias">
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 1 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 1</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 1
-                </div>
+                <a
+                    href="Infografias/infografia1.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia1.png"
+                        alt="Infografía 1"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 2 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 2</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 2
-                </div>
+                <a
+                    href="Infografias/infografia2.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia2.png"
+                        alt="Infografía 2"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 3 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 3</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 3
-                </div>
+                <a
+                    href="Infografias/infografia3.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia3.png"
+                        alt="Infografía 3"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 4 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 4</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 4
-                </div>
+                <a
+                    href="Infografias/infografia4.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia4.png"
+                        alt="Infografía 4"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 5 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 5</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 5
-                </div>
+                <a
+                    href="Infografias/infografia5.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia5.png"
+                        alt="Infografía 5"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 6 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 6</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 6
-                </div>
+                <a
+                    href="Infografias/infografia6.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia6.png"
+                        alt="Infografía 6"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 7 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 7</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 7
-                </div>
+                <a
+                    href="Infografias/infografia7.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia7.png"
+                        alt="Infografía 7"
+                    >
+
+                </a>
+
             </div>
 
 
+
+            <!-- ================================= -->
             <!-- INFOGRAFÍA 8 -->
+            <!-- ================================= -->
 
             <div class="infografia">
+
                 <h3>Infografía 8</h3>
 
-                <div class="sin-imagen">
-                    Aquí se colocará la infografía 8
-                </div>
+                <a
+                    href="Infografias/infografia8.png"
+                    target="_blank"
+                >
+
+                    <img
+                        src="Infografias/infografia8.png"
+                        alt="Infografía 8"
+                    >
+
+                </a>
+
             </div>
+
 
         </div>
 
     </div>
 
 
+
     <!-- ================================= -->
-    <!-- APRENDIZAJE -->
+    <!-- ¿QUÉ APRENDÍ? -->
     <!-- ================================= -->
 
     <div class="aprendizaje">
 
         <h2>¿Qué aprendí?</h2>
 
+
         <p>
-            Durante la Semana 2 aprendí aspectos relacionados con
-            la instalación y configuración de MS-SQL Server y
-            reforcé los conocimientos relacionados con la gestión
-            de bases de datos.
+
+            Durante la Semana 2 aprendí aspectos relacionados
+            con la instalación y configuración de MS-SQL Server.
+            También comprendí la importancia de configurar
+            correctamente el Database Engine y utilizar
+            SQL Server Management Studio para administrar
+            las bases de datos.
+
         </p>
 
     </div>
 
 
-    <!-- VOLVER AL INICIO -->
 
-    <a href="index.html" class="boton">
+    <!-- ================================= -->
+    <!-- VOLVER AL INICIO -->
+    <!-- ================================= -->
+
+    <a
+        href="index.html"
+        class="boton"
+    >
+
         ← Volver al inicio
+
     </a>
+
 
 </div>
 
 
+
+<!-- ================================= -->
+<!-- PIE DE PÁGINA -->
+<!-- ================================= -->
+
 <footer>
 
-    <p>© 2026 Carlos Velásquez Ortega</p>
-    <p>Base de Datos II</p>
+    <p>
+        © 2026 Carlos Velásquez Ortega
+    </p>
+
+    <p>
+        Base de Datos II
+    </p>
 
 </footer>
 
+
 </body>
+
 </html>
+```
+
