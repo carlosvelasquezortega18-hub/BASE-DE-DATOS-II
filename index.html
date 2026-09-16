@@ -27,12 +27,21 @@
             background: #0f172a;
             color: white;
         }
+        header h1,
+header p {
+    position: relative;
+    z-index: 2;
+}
 
         header {
-            background: linear-gradient(135deg, #1d4ed8, #2563eb);
-            text-align: center;
-            padding: 70px 20px;
-        }
+    position: relative;
+    background:
+        linear-gradient(rgba(29, 78, 216, 0.85), rgba(37, 99, 235, 0.85)),
+        url("upla.jpg") center center / cover no-repeat;
+    text-align: center;
+    padding: 70px 20px;
+    overflow: hidden;
+}
 
         header h1 {
             font-size: 50px;
