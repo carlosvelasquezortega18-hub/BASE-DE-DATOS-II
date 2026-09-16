@@ -21,34 +21,78 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
-        }
-        header h1,
+       body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0, 174, 255, 0.35), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(123, 47, 255, 0.35), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a, #061b3a);
+
+    background-size: 200% 200%;
+    animation: fondoMovimiento 12s ease infinite;
+}
+
+@keyframes fondoMovimiento {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+      header h1,
 header p {
     position: relative;
     z-index: 2;
 }
 
-       header {
+header {
     position: relative;
-    background: url("upla.jpg") center center / cover no-repeat;
     text-align: center;
-    padding: 70px 20px;
+    padding: 80px 20px;
     overflow: hidden;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0, 174, 255, 0.5), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(120, 0, 255, 0.5), transparent 30%),
+        linear-gradient(135deg, #020617, #1d4ed8, #061b3a);
+
+    background-size: 200% 200%;
+    animation: movimiento 8s ease infinite;
+
+    box-shadow: 0 0 35px rgba(0, 174, 255, 0.5);
 }
 
-        header h1 {
-            font-size: 50px;
-            margin: 0 0 15px;
-        }
+@keyframes movimiento {
+    0% {
+        background-position: 0% 50%;
+    }
 
-        header p {
-            font-size: 20px;
-        }
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header h1 {
+    font-size: 50px;
+    margin: 0 0 15px;
+}
+
+header p {
+    font-size: 20px;
+}
 
         nav {
             background: #020617;
