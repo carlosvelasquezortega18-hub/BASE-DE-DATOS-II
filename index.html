@@ -136,6 +136,29 @@ header p {
             border-radius: 12px;
             text-align: center;
         }
+        .imagen-upla {
+    text-align: center;
+    margin: 20px 0 50px;
+}
+
+.imagen-upla img {
+    width: 100%;
+    max-width: 1000px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow:
+        0 0 20px rgba(0, 174, 255, 0.5),
+        0 0 40px rgba(37, 99, 235, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.imagen-upla img:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 0 30px rgba(0, 174, 255, 0.8),
+        0 0 60px rgba(37, 99, 235, 0.5);
+}
 
         .semanas {
             display: grid;
@@ -223,18 +246,11 @@ header p {
 </nav>
 
 <div class="contenedor">
-
-    <section id="inicio">
-        <div class="intro">
-            <h2>Bienvenido 👋</h2>
-            <p>
-                Este sitio web presenta las actividades,
-                conocimientos y aprendizajes desarrollados
-                durante el curso de <strong>Base de Datos II</strong>.
-            </p>
-        </div>
-    </section>
-
+<section id="inicio">
+    <div class="imagen-upla">
+        <img src="upla.jpg" alt="Universidad Peruana Los Andes">
+    </div>
+</section>
     <section id="semanas">
 
         <h2>Las 16 semanas 📚</h2>
