@@ -101,11 +101,15 @@
             border-radius: 8px;
             overflow-x: auto;
             margin-top: 15px;
+            border-left: 4px solid #2563eb;
         }
 
         .codigo code {
             color: #bfdbfe;
             font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre;
         }
 
         .aprendizaje {
@@ -277,18 +281,119 @@
             </div>
 
 
-            <h3>Ejemplo de creación de un esquema</h3>
+            <h3>Script SQL completo - Grados y Títulos</h3>
 
             <div class="codigo">
-
                 <code>
-                    CREATE SCHEMA Academico;
-                    <br><br>
-                    CREATE SCHEMA GradosTitulos;
-                    <br><br>
-                    CREATE SCHEMA Investigacion;
-                </code>
+-- ============================================
+-- BASE DE DATOS: GRADOS Y TÍTULOS
+-- ============================================
 
+CREATE DATABASE GradosTitulosUPLA;
+GO
+
+USE GradosTitulosUPLA;
+GO
+
+-- ============================================
+-- ESQUEMAS
+-- ============================================
+
+CREATE SCHEMA Academico;
+GO
+
+CREATE SCHEMA Tesis;
+GO
+
+-- ============================================
+-- TABLAS DEL ESQUEMA ACADEMICO
+-- ============================================
+
+CREATE TABLE Academico.Facultad (
+    FacultadID INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre NVARCHAR(100) NOT NULL,
+    Codigo NVARCHAR(10) UNIQUE NOT NULL
+);
+GO
+
+CREATE TABLE Academico.ProgramaEstudios (
+    ProgramaID INT IDENTITY(1,1) PRIMARY KEY,
+    FacultadID INT NOT NULL,
+    Nombre NVARCHAR(150) NOT NULL,
+    GradoAcademico NVARCHAR(100),
+    TituloProfesional NVARCHAR(100),
+    CONSTRAINT FK_Programa_Facultad 
+        FOREIGN KEY (FacultadID) REFERENCES Academico.Facultad(FacultadID)
+);
+GO
+
+CREATE TABLE Academico.Bachiller (
+    BachillerID INT IDENTITY(1,1) PRIMARY KEY,
+    DNI NVARCHAR(8) UNIQUE NOT NULL,
+    Nombres NVARCHAR(100) NOT NULL,
+    Apellidos NVARCHAR(100) NOT NULL,
+    ProgramaID INT NOT NULL,
+    FechaGrado DATE,
+    Estado NVARCHAR(20) DEFAULT 'Egresado',
+    CONSTRAINT FK_Bachiller_Programa 
+        FOREIGN KEY (ProgramaID) REFERENCES Academico.ProgramaEstudios(ProgramaID),
+    CONSTRAINT CHK_EstadoBachiller 
+        CHECK (Estado IN ('Egresado', 'Bachiller', 'Titulado'))
+);
+GO
+
+-- ============================================
+-- TABLAS DEL ESQUEMA TESIS
+-- ============================================
+
+CREATE TABLE Tesis.Asesor (
+    AsesorID INT IDENTITY(1,1) PRIMARY KEY,
+    DNI NVARCHAR(8) UNIQUE NOT NULL,
+    Nombres NVARCHAR(100) NOT NULL,
+    Apellidos NVARCHAR(100) NOT NULL,
+    CodigoORCID NVARCHAR(20),
+    Especialidad NVARCHAR(100)
+);
+GO
+
+CREATE TABLE Tesis.PlanTesis (
+    PlanID INT IDENTITY(1,1) PRIMARY KEY,
+    BachillerID INT NOT NULL,
+    AsesorID INT NOT NULL,
+    Titulo NVARCHAR(200) NOT NULL,
+    LineaInvestigacion NVARCHAR(150),
+    FechaInicio DATE,
+    FechaFin DATE,
+    Estado NVARCHAR(20) DEFAULT 'En Ejecucion',
+    CONSTRAINT FK_Plan_Bachiller 
+        FOREIGN KEY (BachillerID) REFERENCES Academico.Bachiller(BachillerID),
+    CONSTRAINT FK_Plan_Asesor 
+        FOREIGN KEY (AsesorID) REFERENCES Tesis.Asesor(AsesorID),
+    CONSTRAINT CHK_Fechas CHECK (FechaFin > FechaInicio)
+);
+GO
+
+CREATE TABLE Tesis.Jurado (
+    JuradoID INT IDENTITY(1,1) PRIMARY KEY,
+    DNI NVARCHAR(8) UNIQUE NOT NULL,
+    Nombres NVARCHAR(100) NOT NULL,
+    Apellidos NVARCHAR(100) NOT NULL,
+    GradoAcademico NVARCHAR(50)
+);
+GO
+
+CREATE TABLE Tesis.Sustentacion (
+    SustentacionID INT IDENTITY(1,1) PRIMARY KEY,
+    PlanID INT NOT NULL,
+    FechaSustentacion DATETIME,
+    NotaFinal DECIMAL(4,2),
+    Resultado NVARCHAR(20),
+    CONSTRAINT FK_Sustentacion_Plan 
+        FOREIGN KEY (PlanID) REFERENCES Tesis.PlanTesis(PlanID),
+    CONSTRAINT CHK_Nota CHECK (NotaFinal BETWEEN 0 AND 20)
+);
+GO
+                </code>
             </div>
 
         </div>
@@ -351,6 +456,134 @@
 
             </div>
 
+
+            <h3>Script SQL completo - Cadena Editorial</h3>
+
+            <div class="codigo">
+                <code>
+-- ============================================
+-- BASE DE DATOS: CADENA EDITORIAL
+-- ============================================
+
+CREATE DATABASE CadenaEditorial;
+GO
+
+USE CadenaEditorial;
+GO
+
+-- ============================================
+-- SUCURSALES
+-- ============================================
+
+CREATE TABLE Sucursal (
+    CodigoSucursal INT PRIMARY KEY,
+    Domicilio NVARCHAR(200),
+    Telefono NVARCHAR(20)
+);
+GO
+
+-- ============================================
+-- EMPLEADOS (Trabajan en una única sucursal)
+-- ============================================
+
+CREATE TABLE Empleado (
+    NIF NVARCHAR(15) PRIMARY KEY,
+    Nombre NVARCHAR(50) NOT NULL,
+    Apellidos NVARCHAR(50) NOT NULL,
+    Telefono NVARCHAR(20),
+    CodigoSucursal INT NOT NULL,
+    CONSTRAINT FK_Empleado_Sucursal 
+        FOREIGN KEY (CodigoSucursal) REFERENCES Sucursal(CodigoSucursal)
+);
+GO
+
+-- ============================================
+-- REVISTAS
+-- ============================================
+
+CREATE TABLE Revista (
+    NumeroRegistro INT PRIMARY KEY,
+    Titulo NVARCHAR(100) NOT NULL,
+    Periodicidad NVARCHAR(50),
+    Tipo NVARCHAR(50)
+);
+GO
+
+-- ============================================
+-- PUBLICACION (Relación N:M entre Sucursal y Revista)
+-- ============================================
+
+CREATE TABLE Publicacion (
+    CodigoSucursal INT NOT NULL,
+    NumeroRegistro INT NOT NULL,
+    PRIMARY KEY (CodigoSucursal, NumeroRegistro),
+    CONSTRAINT FK_Publicacion_Sucursal 
+        FOREIGN KEY (CodigoSucursal) REFERENCES Sucursal(CodigoSucursal),
+    CONSTRAINT FK_Publicacion_Revista 
+        FOREIGN KEY (NumeroRegistro) REFERENCES Revista(NumeroRegistro)
+);
+GO
+
+-- ============================================
+-- PERIODISTAS (No trabajan en sucursales)
+-- ============================================
+
+CREATE TABLE Periodista (
+    NIF NVARCHAR(15) PRIMARY KEY,
+    Nombre NVARCHAR(50) NOT NULL,
+    Apellidos NVARCHAR(50) NOT NULL,
+    Telefono NVARCHAR(20),
+    Especialidad NVARCHAR(100)
+);
+GO
+
+-- ============================================
+-- ARTICULOS (Relación N:M entre Periodista y Revista)
+-- ============================================
+
+CREATE TABLE Articulo (
+    IDArticulo INT IDENTITY(1,1) PRIMARY KEY,
+    NIF_Periodista NVARCHAR(15) NOT NULL,
+    NumeroRegistro INT NOT NULL,
+    TituloArticulo NVARCHAR(150),
+    CONSTRAINT FK_Articulo_Periodista 
+        FOREIGN KEY (NIF_Periodista) REFERENCES Periodista(NIF),
+    CONSTRAINT FK_Articulo_Revista 
+        FOREIGN KEY (NumeroRegistro) REFERENCES Revista(NumeroRegistro)
+);
+GO
+
+-- ============================================
+-- SECCIONES FIJAS (Dependen de Revista)
+-- ============================================
+
+CREATE TABLE SeccionFija (
+    IDSeccion INT IDENTITY(1,1) PRIMARY KEY,
+    NumeroRegistro INT NOT NULL,
+    Titulo NVARCHAR(100) NOT NULL,
+    Extension NVARCHAR(50),
+    CONSTRAINT FK_Seccion_Revista 
+        FOREIGN KEY (NumeroRegistro) REFERENCES Revista(NumeroRegistro)
+);
+GO
+
+-- ============================================
+-- EJEMPLARES (Dependen de Revista)
+-- ============================================
+
+CREATE TABLE Ejemplar (
+    IDEjemplar INT IDENTITY(1,1) PRIMARY KEY,
+    NumeroRegistro INT NOT NULL,
+    Fecha DATE,
+    NumeroPaginas INT,
+    EjemplaresVendidos INT,
+    CONSTRAINT FK_Ejemplar_Revista 
+        FOREIGN KEY (NumeroRegistro) REFERENCES Revista(NumeroRegistro)
+);
+GO
+                </code>
+            </div>
+
         </div>
 
 
@@ -408,6 +641,151 @@
 
                 </div>
 
+            </div>
+
+
+            <h3>Script SQL completo - Empresa de Material Informático</h3>
+
+            <div class="codigo">
+                <code>
+-- ============================================
+-- BASE DE DATOS: EMPRESA DE MATERIAL INFORMÁTICO
+-- ============================================
+
+CREATE DATABASE EmpresaInformatica;
+GO
+
+USE EmpresaInformatica;
+GO
+
+-- ============================================
+-- SECCIONES
+-- ============================================
+
+CREATE TABLE Seccion (
+    IDSeccion INT PRIMARY KEY,
+    NombreSeccion NVARCHAR(100) NOT NULL
+);
+GO
+
+-- ============================================
+-- EMPLEADOS (Trabajan en una única sección)
+-- ============================================
+
+CREATE TABLE Empleado (
+    NIF NVARCHAR(15) PRIMARY KEY,
+    Nombre NVARCHAR(50) NOT NULL,
+    Apellidos NVARCHAR(50) NOT NULL,
+    IDSeccion INT NOT NULL,
+    CONSTRAINT FK_Empleado_Seccion 
+        FOREIGN KEY (IDSeccion) REFERENCES Seccion(IDSeccion)
+);
+GO
+
+-- ============================================
+-- CLIENTES
+-- ============================================
+
+CREATE TABLE Cliente (
+    NIF NVARCHAR(15) PRIMARY KEY,
+    Nombre NVARCHAR(50) NOT NULL,
+    Apellidos NVARCHAR(50) NOT NULL,
+    Domicilio NVARCHAR(200),
+    Ciudad NVARCHAR(50),
+    Provincia NVARCHAR(50),
+    Telefono NVARCHAR(20)
+);
+GO
+
+-- ============================================
+-- EQUIPOS
+-- ============================================
+
+CREATE TABLE Equipo (
+    CodigoEquipo INT PRIMARY KEY,
+    Descripcion NVARCHAR(200) NOT NULL,
+    Precio DECIMAL(10,2) NOT NULL,
+    Stock INT DEFAULT 0
+);
+GO
+
+-- ============================================
+-- COMPONENTES
+-- ============================================
+
+CREATE TABLE Componente (
+    CodigoComponente INT PRIMARY KEY,
+    Descripcion NVARCHAR(200) NOT NULL,
+    Precio DECIMAL(10,2) NOT NULL,
+    Stock INT DEFAULT 0
+);
+GO
+
+-- ============================================
+-- COMPRAS (Cabecera de la compra)
+-- ============================================
+
+CREATE TABLE Compra (
+    IDCompra INT IDENTITY(1,1) PRIMARY KEY,
+    NIF_Cliente NVARCHAR(15) NOT NULL,
+    NIF_Empleado NVARCHAR(15) NOT NULL,
+    FechaCompra DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_Compra_Cliente 
+        FOREIGN KEY (NIF_Cliente) REFERENCES Cliente(NIF),
+    CONSTRAINT FK_Compra_Empleado 
+        FOREIGN KEY (NIF_Empleado) REFERENCES Empleado(NIF)
+);
+GO
+
+-- ============================================
+-- DETALLE COMPRA EQUIPO (Histórico)
+-- ============================================
+
+CREATE TABLE DetalleCompraEquipo (
+    IDCompra INT NOT NULL,
+    CodigoEquipo INT NOT NULL,
+    Cantidad INT NOT NULL,
+    PRIMARY KEY (IDCompra, CodigoEquipo),
+    CONSTRAINT FK_DetalleEquipo_Compra 
+        FOREIGN KEY (IDCompra) REFERENCES Compra(IDCompra),
+    CONSTRAINT FK_DetalleEquipo_Equipo 
+        FOREIGN KEY (CodigoEquipo) REFERENCES Equipo(CodigoEquipo)
+);
+GO
+
+-- ============================================
+-- DETALLE COMPRA COMPONENTE (Histórico)
+-- ============================================
+
+CREATE TABLE DetalleCompraComponente (
+    IDCompra INT NOT NULL,
+    CodigoComponente INT NOT NULL,
+    Cantidad INT NOT NULL,
+    PRIMARY KEY (IDCompra, CodigoComponente),
+    CONSTRAINT FK_DetalleComp_Compra 
+        FOREIGN KEY (IDCompra) REFERENCES Compra(IDCompra),
+    CONSTRAINT FK_DetalleComp_Componente 
+        FOREIGN KEY (CodigoComponente) REFERENCES Componente(CodigoComponente)
+);
+GO
+
+-- ============================================
+-- COMPOSICION DE EQUIPOS 
+-- (Un equipo consta de varios componentes)
+-- ============================================
+
+CREATE TABLE ComposicionEquipo (
+    CodigoEquipo INT NOT NULL,
+    CodigoComponente INT NOT NULL,
+    CantidadNecesaria INT NOT NULL,
+    PRIMARY KEY (CodigoEquipo, CodigoComponente),
+    CONSTRAINT FK_Composicion_Equipo 
+        FOREIGN KEY (CodigoEquipo) REFERENCES Equipo(CodigoEquipo),
+    CONSTRAINT FK_Composicion_Componente 
+        FOREIGN KEY (CodigoComponente) REFERENCES Componente(CodigoComponente)
+);
+GO
+                </code>
             </div>
 
         </div>
